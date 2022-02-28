@@ -15,14 +15,15 @@
         <main class="container mx-auto">
             <!-- Search Section -->
             <section class="flex justify-center items-center my-8 py-8">
-                <div>
+                <div class="gap-0">
                     <input
                         type="text"
-                        id="search"
+                        id="search-box"
                         placeholder="Search a phone"
-                        class="py-2 px-4 bg-white rounded-l-md"
+                        class="py-2 px-4 bg-white rounded-l-md ring-1 ring-blue-500"
                     />
                     <button
+                        id="search-btn"
                         class="py-2 px-4 bg-blue-600 text-white rounded-r-md"
                     >
                         Search
@@ -35,7 +36,7 @@
             <section class="flex justify-center items-center">
                 <div
                     id="phones"
-                    class="flex justify-between items-center"
+                    class="grid grid-cols-1 sm:grid-cols-3 justify-between items-center gap-4"
                 ></div>
             </section>
         </main>
