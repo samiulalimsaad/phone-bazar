@@ -23,28 +23,31 @@ const displayPhones = (phones) => {
     for (const phone of phones) {
         const div = document.createElement("div");
         div.innerHTML = `
-                    <div class="border p-4 font-serif rounded-lg">
-                        <div class="my-4">
-                            <div>
-                                <img src="${phone.image}" alt="${phone.phone_name}"/>
+                    <div class="border p-4 rounded-lg shadow-lg ">
+                        <div class="my-4 px-4">
+                            <div class="flex justify-center items-center my-4 hover:scale-110 transition-transform duration-300">
+                                <img class="" src="${phone.image}" alt="${phone.phone_name}"/>
                             </div>
-                            <h2 class="text-2xl font-medium">
-                                <span class="font-medium capitalize"
-                                    >name: </span
-                                >${phone.phone_name}
-                            </h2>
-                            <h2 class="text-2xl font-medium">
-                                <span class="font-medium capitalize"
-                                    >user name: </span
-                                >@${phone?.brand}
-                            </h2>
+                            <div class="py-4">
+                                <h2 class="text-2xl">
+                                    <span class="font-medium capitalize"
+                                        >Model: </span
+                                    >${phone.phone_name}
+                                </h2>
+                                <h2 class="text-xl">
+                                    <span class="font-medium capitalize"
+                                        >Brand: </span
+                                    >${phone?.brand}
+                                </h2>
+                                <div class="my-4 flex items-center justify-center">
+                                    <button class="px-8 py-4 bg-slate-500 hover:bg-slate-800 active:bg-slate-900 text-white rounded-md capitalize">Explore more</button
+                                </div>
+                            </div>
                         </div>
-                        <h3 class="text-xl">
-                            <span class="font-medium capitalize">email: </span
-                            >${phone.slug}
-                        </h3>
                     </div>
     `;
         phonesNode.appendChild(div);
     }
 };
+
+fetchPhones("oppo");

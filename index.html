@@ -15,7 +15,7 @@
         <main class="container mx-auto">
             <!-- Search Section -->
             <section class="flex justify-center items-center my-8 py-8">
-                <div class="gap-0">
+                <div class="flex">
                     <input
                         type="text"
                         id="search-box"
@@ -24,7 +24,7 @@
                     />
                     <button
                         id="search-btn"
-                        class="py-2 px-4 bg-blue-600 text-white rounded-r-md"
+                        class="py-2 px-4 bg-blue-600 hover:bg-blue-900 ring-2 ring-blue-500 text-white rounded-r-md"
                     >
                         Search
                     </button>
@@ -33,7 +33,9 @@
 
             <!-- Phone Display section -->
 
-            <section class="flex justify-center items-center">
+            <section
+                class="flex justify-center items-center sm:container sm:px-32"
+            >
                 <div
                     id="phones"
                     class="grid grid-cols-1 sm:grid-cols-3 justify-between items-center gap-4"
