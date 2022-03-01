@@ -14,7 +14,10 @@
         </header>
         <main class="container mx-auto">
             <!-- Search Section -->
-            <section class="flex justify-center items-center my-8 py-8">
+            <section
+                id="search-section"
+                class="flex justify-center items-center my-8 py-8"
+            >
                 <div class="flex">
                     <input
                         type="text"
@@ -34,6 +37,7 @@
             <!-- Phone Display section -->
 
             <section
+                id="card-section"
                 class="flex justify-center items-center sm:container sm:px-32"
             >
                 <div
@@ -42,8 +46,16 @@
                 ></div>
                 <!-- Nodata Found -->
                 <div id="no-data"></div>
+            </section>
+            <section
+                class="flex justify-center items-center mt-12 sm:container sm:px-32"
+            >
                 <div id="loading"></div>
             </section>
+            <section
+                id="details-section"
+                class="flex justify-center items-center mt-12 sm:container sm:px-32"
+            ></section>
         </main>
         <!-- custom Javascript -->
         <script src="app.js"></script>
