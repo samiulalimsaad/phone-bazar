@@ -2,6 +2,10 @@
 const searchBoxNode = document.querySelector("#search-box");
 const searchButtonNode = document.querySelector("#search-btn");
 const phonesNode = document.querySelector("#phones");
+const noDataNode = document.querySelector("#no-data");
+const loadingNode = document.querySelector("#loading");
+
+noDataNode.style.display = "none";
 
 searchBoxNode.addEventListener("change", (e) => {
     const value = searchBoxNode.value.toLowerCase();
@@ -13,17 +17,30 @@ searchButtonNode.addEventListener("click", (e) => {
 });
 
 const fetchPhones = (phone) => {
-    fetch(`https://openapi.programming-hero.com/api/phones?search=${phone}`)
-        .then((res) => res.json())
-        .then((data) => displayPhones(data?.data))
-        .catch((e) => console.log(e.message));
+    phonesNode.innerHTML = null;
+    loadingNode.style.display = "block";
+    loadingNode.innerHTML = `
+        <h2 class="animate-bounce text-xl font-mono">Loading...</h2>
+    `;
+    if (phone) {
+        fetch(`https://openapi.programming-hero.com/api/phones?search=${phone}`)
+            .then((res) => res.json())
+            .then((data) => displayPhones(data?.data))
+            .catch((e) => console.log(e.message));
+    } else {
+        alert("please enter a brand name");
+    }
+    searchBoxNode.value = "";
 };
-const displayPhones = (phones) => {
-    console.log(phones);
-    for (const phone of phones) {
-        const div = document.createElement("div");
-        div.innerHTML = `
-                    <div class="border p-4 rounded-lg shadow-lg ">
+
+const displayPhones = (phones = []) => {
+    loadingNode.style.display = "none";
+    if (phones.length) {
+        const shortListedPhones = phones.slice(0, 20);
+        for (const phone of shortListedPhones) {
+            const div = document.createElement("div");
+            div.innerHTML = `
+                    <div class="border p-4 rounded-lg shadow-lg bg-white">
                         <div class="my-4 px-4">
                             <div class="flex justify-center items-center my-4 hover:scale-110 transition-transform duration-300">
                                 <img class="" src="${phone.image}" alt="${phone.phone_name}"/>
@@ -46,8 +63,15 @@ const displayPhones = (phones) => {
                         </div>
                     </div>
     `;
-        phonesNode.appendChild(div);
+            phonesNode.appendChild(div);
+        }
+    } else {
+        noDataNode.style.display = "block";
+        noDataNode.innerHTML = `
+                    <span class="text-2xl font-medium"> No data found
+                    </span>
+            `;
     }
 };
 
-fetchPhones("oppo");
+fetchPhones("apple");
